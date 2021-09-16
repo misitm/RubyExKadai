@@ -38,6 +38,8 @@ for i in 0..(lines-1) do
   end
 end
 speed=1.5
+score=0
+font = Font.new(32)
 
 Window.loop do
   player.update
@@ -46,6 +48,7 @@ Window.loop do
     if enemys[i][0].y>Window.height
       hole=rand(18)
       speed+=0.01
+      score+=1
       for j in 0..19 do
         if(hole==j||hole+1==j||hole+2==j)
           enemys[i][j].x=Window.width+10
@@ -62,8 +65,10 @@ Window.loop do
       enemys[i][j].draw
 
       if enemys[i][j]===player
+        sleep(5)
         Window.close
       end
     end
   end
+  Window.draw_font(10, 10, score.to_s, font) 
 end
